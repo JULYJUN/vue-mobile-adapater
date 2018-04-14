@@ -36,7 +36,7 @@ state: {
       }
     }
 ```
->首页改变
+*首页改变
 
 ``` bash
 computed:{
