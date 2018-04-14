@@ -1,21 +1,58 @@
 # vue-mobile-adapater
 
-> A Vue.js project
+> vue项目手机移动适配
 
-## Build Setup
+## 运行
 
 ``` bash
-# install dependencies
+
 npm install
 
-# serve with hot reload at localhost:8080
 npm run dev
 
-# build for production with minification
-npm run build
-
-# build for production and view the bundle analyzer report
-npm run build --report
 ```
 
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+## 使用
+
+*由屏幕大小判断手机，平板，电脑，把判断值isMobile放在Vuex中；
+>
+
+``` bash
+state: {
+      isMobile: false
+    },
+    mutations: {
+      mobileLayout(state){
+        state.isMobile = true
+      }
+    },
+    actions: {
+      setmobileLayout: function({commit}){
+        let w = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+        console.log(w)
+        if(w<960){
+          commit('mobileLayout')
+        }
+      }
+    }
+```
+>首页改变
+
+``` bash
+computed:{
+    isMobile(){
+      return this.$store.state.isMobile.isMobile
+    }
+  },
+  created(){
+    this.setmobileLayout()
+  },
+  methods: {
+    ...mapActions([
+      'setmobileLayout'
+    ])
+  }
+```
+
+然后，然后就可以用啦～～～～～
+Happy ending!
